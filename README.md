@@ -6,11 +6,12 @@ This example doesn't feature any of the higher-level abstractions of Pulumi, una
 
 ```bash
 # Create and configure a new stack
-$ pulumi stack init testing
+$ pulumi stack init lambda-api-gateway-dev
 $ pulumi config set aws:region eu-wast-1
 
 # Install dependencies
 $ virtualenv -p python3 venv
+$ source venv/bin/activate
 $ pip3 install -r requirements.txt
 
 # Preview and run the deployment
