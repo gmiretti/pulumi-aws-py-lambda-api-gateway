@@ -7,7 +7,7 @@ This example doesn't feature any of the higher-level abstractions of Pulumi, una
 ```bash
 # Create and configure a new stack
 $ pulumi stack init lambda-api-gateway-dev
-$ pulumi config set aws:region eu-wast-1
+$ pulumi config set aws:region eu-west-1
 
 # Install dependencies
 $ virtualenv -p python3 venv
