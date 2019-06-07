@@ -37,31 +37,6 @@ example_api = apigateway.RestApi(
     description='Pulumi Lambda API Gateway Example'
 )
 
-proxy_res = apigateway.Resource(
-    'proxy',
-    rest_api=example_api,
-    parent_id=example_api.root_resource_id,
-    path_part='{proxy+}'
-)
-
-proxy_met = apigateway.Method(
-    'proxy',
-    rest_api=example_api,
-    resource_id=proxy_res.id,
-    http_method='ANY',
-    authorization='NONE'
-)
-
-example_int = apigateway.Integration(
-    'lambda',
-    rest_api=example_api,
-    resource_id=proxy_met.resource_id,
-    http_method=proxy_met.http_method,
-    integration_http_method='POST',
-    type='AWS_PROXY',
-    uri=example_fn.invoke_arn
-)
-
 proxy_root_met = apigateway.Method(
     'proxy_root',
     rest_api=example_api,
@@ -84,7 +59,7 @@ example_dep = apigateway.Deployment(
     'example',
     rest_api=example_api,
     stage_name="example-test",
-    __opts__=ResourceOptions(depends_on=[example_int, example_root_int])
+    __opts__=ResourceOptions(depends_on=[example_root_int])
 )
 
 example_perm = lambda_.Permission(
